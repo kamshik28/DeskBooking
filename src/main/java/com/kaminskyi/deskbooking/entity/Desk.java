@@ -1,4 +1,4 @@
-package org.example.entity;
+package com.kaminskyi.deskbooking.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -16,11 +16,16 @@ public class Desk {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private Integer floor;
 
-    @ManyToOne
+    @Column(nullable = false)
+    private boolean active = true;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "office_id")
     private Office office;
 }

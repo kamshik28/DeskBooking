@@ -1,14 +1,31 @@
 spring:
+  application:
+    name: desk-booking
   datasource:
-    url: jdbc:postgresql://localhost:5432/desk_booking
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/desk_booking}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+server:
+  port: ${PORT:8080}
+
+app:
+  jwt:
+    # only for local dev, in docker/prod set JWT_SECRET
+    secret: ${JWT_SECRET:ZGV2LXNlY3JldC1rZXktZm9yLWRlc2stYm9va2luZy1jaGFuZ2UtbWUtcGxlYXNl}
+    expiration-minutes: ${JWT_EXPIRATION_MINUTES:120}
+  booking:
+    max-days-ahead: 30
+  admin:
+    email: ${ADMIN_EMAIL:admin@deskbooking.local}
+    password: ${ADMIN_PASSWORD:admin123}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

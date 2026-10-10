@@ -1,9 +1,7 @@
-package org.example.repository;
+package com.kaminskyi.deskbooking.repository;
 
-import org.example.entity.Office;
+import com.kaminskyi.deskbooking.entity.Office;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface OfficeRepository extends JpaRepository<Office, Long> {
 }

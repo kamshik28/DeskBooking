@@ -1,17 +1,18 @@
-package org.example.entity;
+package com.kaminskyi.deskbooking.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "offices")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,19 +22,20 @@ public class Office {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Назва офісу не може бути порожньою")
+    @Column(nullable = false)
     private String name;
 
-    @NotBlank(message = "Місто не може бути порожнім")
+    @Column(nullable = false)
     private String city;
 
-    @NotBlank(message = "Адреса не може бути порожньою")
+    @Column(nullable = false)
     private String address;
 
     @CreatedDate
-    @Column(updatable = false)   // ніколи не змінюється вручну
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 }
