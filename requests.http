@@ -1,0 +1,30 @@
+### Login as admin
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{"email": "admin@deskbooking.local", "password": "admin123"}
+
+### Register user
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{"email": "john@example.com", "password": "secret123", "fullName": "John Doe"}
+
+### Offices (paste token)
+GET http://localhost:8080/api/offices
+Authorization: Bearer {{token}}
+
+### Free desks for a day
+GET http://localhost:8080/api/desks/available?officeId=1&date=2026-10-20
+Authorization: Bearer {{token}}
+
+### Book a desk
+POST http://localhost:8080/api/bookings
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"deskId": 1, "date": "2026-10-20"}
+
+### My bookings
+GET http://localhost:8080/api/bookings/my
+Authorization: Bearer {{token}}
