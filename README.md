@@ -45,9 +45,10 @@ API runs on http://localhost:8080, Swagger UI on http://localhost:8080/swagger-u
 
 ### Locally
 
-You need Java 17+, Maven and PostgreSQL with a database `desk_booking`.
+You need Java 17+ and Maven. The easiest way to get the database is to start only the `db` container (it is exposed on port `5433` so it doesn't clash with a local PostgreSQL):
 
 ```bash
+docker compose up -d db
 mvn spring-boot:run
 ```
 
